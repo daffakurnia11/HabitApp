@@ -72,7 +72,7 @@ class HabitListActivity : AppCompatActivity() {
             findViewById(R.id.coordinator_layout),
             getString(message),
             Snackbar.LENGTH_SHORT
-        ).setAction("Undo"){
+        ).setAction("Undo") {
             viewModel.insert(viewModel.undo.value?.getContentIfNotHandled() as Habit)
         }.show()
     }
@@ -83,7 +83,7 @@ class HabitListActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when(item.itemId) {
+        return when (item.itemId) {
             R.id.action_random -> {
                 startActivity(Intent(this@HabitListActivity, RandomHabitActivity::class.java))
                 true

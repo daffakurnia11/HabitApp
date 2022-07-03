@@ -10,7 +10,7 @@ import com.dicoding.habitapp.ui.random.RandomHabitViewModel
 import com.dicoding.habitapp.ui.list.HabitListViewModel
 
 class ViewModelFactory private constructor(private val habitRepository: HabitRepository) :
-    ViewModelProvider.Factory{
+    ViewModelProvider.Factory {
 
     companion object {
         @Volatile

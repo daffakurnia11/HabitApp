@@ -6,7 +6,7 @@ import androidx.preference.PreferenceManager
 import com.dicoding.habitapp.utils.DarkMode
 import java.util.*
 
-class HabitApplication: Application() {
+class HabitApplication : Application() {
     override fun onCreate() {
         super.onCreate()
 

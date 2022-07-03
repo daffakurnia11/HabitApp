@@ -39,7 +39,7 @@ class HabitRepository(private val habitDao: HabitDao, private val executor: Exec
             .setInitialLoadSizeHint(4)
             .setPageSize(10)
             .build()
-        return LivePagedListBuilder(habitDao.getHabits(SortUtils.getSorteredQuery(filter)),config)
+        return LivePagedListBuilder(habitDao.getHabits(SortUtils.getSorteredQuery(filter)), config)
             .build()
     }
 
@@ -55,5 +55,6 @@ class HabitRepository(private val habitDao: HabitDao, private val executor: Exec
         }
     }
 
-    fun getRandomHabitByPriorityLevel(level: String): LiveData<Habit> = habitDao.getRandomHabitByPriorityLevel(level)
+    fun getRandomHabitByPriorityLevel(level: String): LiveData<Habit> =
+        habitDao.getRandomHabitByPriorityLevel(level)
 }

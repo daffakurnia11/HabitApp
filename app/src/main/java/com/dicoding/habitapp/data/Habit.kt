@@ -27,4 +27,4 @@ data class Habit(
     @ColumnInfo(name = "priorityLevel")
     val priorityLevel: String
 
-): Parcelable
+) : Parcelable

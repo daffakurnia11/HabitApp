@@ -18,7 +18,9 @@ class HabitAdapter(
 
     //TODO 8 : Create and initialize ViewHolder
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HabitViewHolder =
-        HabitViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.habit_item, parent, false))
+        HabitViewHolder(
+            LayoutInflater.from(parent.context).inflate(R.layout.habit_item, parent, false)
+        )
 
 
     override fun onBindViewHolder(holder: HabitViewHolder, position: Int) {
@@ -45,7 +47,7 @@ class HabitAdapter(
             itemView.setOnClickListener {
                 onClick(habit)
             }
-            val priority = when(habit.priorityLevel.lowercase(Locale.getDefault())){
+            val priority = when (habit.priorityLevel.lowercase(Locale.getDefault())) {
                 "high" -> R.drawable.ic_priority_high
                 "medium" -> R.drawable.ic_priority_medium
                 else -> R.drawable.ic_priority_low

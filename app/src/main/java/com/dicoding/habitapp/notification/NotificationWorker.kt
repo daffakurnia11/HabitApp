@@ -24,33 +24,37 @@ class NotificationWorker(private val ctx: Context, params: WorkerParameters) : W
     private val habitTitle = inputData.getString(HABIT_TITLE)
 
     override fun doWork(): Result {
-        val prefManager = androidx.preference.PreferenceManager.getDefaultSharedPreferences(applicationContext)
-        val shouldNotify = prefManager.getBoolean(applicationContext.getString(R.string.pref_key_notify), false)
+        val prefManager =
+            androidx.preference.PreferenceManager.getDefaultSharedPreferences(applicationContext)
+        val shouldNotify =
+            prefManager.getBoolean(applicationContext.getString(R.string.pref_key_notify), false)
 
         //TODO 12 : If notification preference on, show notification with pending intent
         if (shouldNotify) {
             val detailActivity = Intent(ctx, DetailHabitActivity::class.java)
             detailActivity.putExtra(HABIT_ID, habitId)
-            val pendingIntent = PendingIntent.getActivity(ctx, 0, detailActivity, PendingIntent.FLAG_UPDATE_CURRENT)
+            val pendingIntent =
+                PendingIntent.getActivity(ctx, 0, detailActivity, PendingIntent.FLAG_UPDATE_CURRENT)
 
             val message = ctx.getString(R.string.notify_content)
             val title = habitTitle
             val notificationSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
 
-            val notificationManager = ctx.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            val notificationManager =
+                ctx.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             val builder = NotificationCompat.Builder(ctx, NOTIFICATION_CHANNEL_ID)
                 .setSmallIcon(R.drawable.ic_notifications)
                 .setContentTitle(title)
                 .setContentText(message)
                 .setColor(ContextCompat.getColor(ctx, android.R.color.transparent))
-                .setVibrate(longArrayOf(1000,1000,1000,1000,1000))
+                .setVibrate(longArrayOf(1000, 1000, 1000, 1000, 1000))
                 .setSound(notificationSound)
                 .setAutoCancel(true)
                 .setContentIntent(pendingIntent)
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setDefaults(NotificationCompat.DEFAULT_ALL)
 
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 val channel = NotificationChannel(
                     NOTIFICATION_CHANNEL_ID,
                     "notify-habit",
@@ -58,7 +62,7 @@ class NotificationWorker(private val ctx: Context, params: WorkerParameters) : W
                 )
 
                 channel.enableVibration(true)
-                channel.vibrationPattern = longArrayOf(1000,1000,1000,1000,1000)
+                channel.vibrationPattern = longArrayOf(1000, 1000, 1000, 1000, 1000)
                 builder.setChannelId(NOTIFICATION_CHANNEL_ID)
                 notificationManager.createNotificationChannel(channel)
             }

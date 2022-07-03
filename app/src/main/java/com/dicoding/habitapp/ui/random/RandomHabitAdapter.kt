@@ -22,8 +22,10 @@ class RandomHabitAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-        PagerViewHolder(LayoutInflater.from(parent.context)
-            .inflate(R.layout.pager_item, parent, false))
+        PagerViewHolder(
+            LayoutInflater.from(parent.context)
+                .inflate(R.layout.pager_item, parent, false)
+        )
 
     override fun onBindViewHolder(holder: PagerViewHolder, position: Int) {
         val key = getIndexKey(position) ?: return
@@ -53,11 +55,11 @@ class RandomHabitAdapter(
             tvStartTime.text = pageData.startTime
             tvMinutes.text = pageData.minutesFocus.toString()
 
-            if (pageType == PageType.HIGH){
+            if (pageType == PageType.HIGH) {
                 itemPriorityLevel.setImageResource(R.drawable.ic_priority_high)
-            }else if (pageType == PageType.MEDIUM){
+            } else if (pageType == PageType.MEDIUM) {
                 itemPriorityLevel.setImageResource(R.drawable.ic_priority_medium)
-            }else if(pageType == PageType.LOW){
+            } else if (pageType == PageType.LOW) {
                 itemPriorityLevel.setImageResource(R.drawable.ic_priority_low)
             }
 

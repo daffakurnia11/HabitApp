@@ -39,9 +39,10 @@ class CountDownActivity : AppCompatActivity() {
             .putInt(HABIT_ID, habit.id)
             .putString(NOTIFICATION_CHANNEL_ID, habit.title)
             .build()
-        val oneTimeWork: OneTimeWorkRequest = OneTimeWorkRequest.Builder(NotificationWorker::class.java)
-            .setInputData(data)
-            .build()
+        val oneTimeWork: OneTimeWorkRequest =
+            OneTimeWorkRequest.Builder(NotificationWorker::class.java)
+                .setInputData(data)
+                .build()
         val workManager = WorkManager.getInstance(this)
         viewModel.setInitialTime(habit.minutesFocus)
         viewModel.eventCountDownFinish.observe(this) {
