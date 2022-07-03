@@ -88,6 +88,10 @@ class HabitListActivity : AppCompatActivity() {
                 startActivity(Intent(this@HabitListActivity, RandomHabitActivity::class.java))
                 true
             }
+            R.id.action_filter -> {
+                showFilteringPopUpMenu()
+                true
+            }
             R.id.action_settings -> {
                 startActivity(Intent(this@HabitListActivity, SettingsActivity::class.java))
                 true
