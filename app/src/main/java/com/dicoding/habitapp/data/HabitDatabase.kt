@@ -31,9 +31,8 @@ abstract class HabitDatabase : RoomDatabase() {
                 val ins = Room.databaseBuilder(
                     context.applicationContext,
                     HabitDatabase::class.java,
-                    "habits_tracker.db"
+                    "habits.db"
                 )
-                    .fallbackToDestructiveMigration()
                     .addCallback(object : Callback() {
                         override fun onCreate(db: SupportSQLiteDatabase) {
                             INSTANCE?.let {
@@ -43,6 +42,7 @@ abstract class HabitDatabase : RoomDatabase() {
                             }
                         }
                     })
+                    .allowMainThreadQueries()
                     .build()
                 INSTANCE = ins
                 ins

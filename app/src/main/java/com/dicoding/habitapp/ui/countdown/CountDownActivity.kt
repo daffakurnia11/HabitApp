@@ -15,6 +15,7 @@ class CountDownActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_count_down)
         supportActionBar?.title = "Count Down"
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         val habit = intent.getParcelableExtra<Habit>(HABIT) as Habit
 
@@ -23,6 +24,11 @@ class CountDownActivity : AppCompatActivity() {
         val viewModel = ViewModelProvider(this).get(CountDownViewModel::class.java)
 
         //TODO 10 : Set initial time and observe current time. Update button state when countdown is finished
+        viewModel.setInitialTime(habit.minutesFocus)
+        viewModel.currentTimeString.observe(this) {
+            val tvCountDown: TextView = findViewById(R.id.tv_count_down)
+            tvCountDown.text = it
+        }
 
         //TODO 13 : Start and cancel One Time Request WorkManager to notify when time is up.
 
